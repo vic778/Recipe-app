@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :email, :password, :current_password)
     end
   end
+
+  def after_sign_up_path_for(_resource)
+    root_path
+  end
 end
