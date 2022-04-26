@@ -14,6 +14,10 @@
     <%= f.label :description, class:"form-label" %><br>
     <%= f.text_field :description,  class:"form-control" , required: true, id:"measurement",  placeholder: 'Very sweet and also nutritious'%><br>
     </div>
+    <div class="mb-3 col-sm-8">
+      <%= f.label :preparationTime, class:"form-label" %><br>
+      <%= f.number_field :preparationTime,  class:"form-control" , required: true, id:"price", placeholder: '20:00 pm'%><br>
+      </div>
 
     <div class="mb-3 col-sm-8">
     <%= f.label :cookingTime, class:"form-label" %><br>

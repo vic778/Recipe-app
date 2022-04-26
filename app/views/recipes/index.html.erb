@@ -12,7 +12,7 @@
       <div>
         <h1><%= link_to recipe.name, recipe_path(recipe) %></h1>
         <div class="mb-3  col-sm-2 btn-div">
-        <%= link_to recipe.name, recipe_path(recipe), method: :delete, class:"btn btn-primary form-control" %>
+        <%= button_to 'Romove' recipe_path(recipe.id), method: :delete, class:"btn btn-primary form-control" %>
     </div>
       </div>
       <div>

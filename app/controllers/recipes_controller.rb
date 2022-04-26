@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
     if add_recipe.save
       # redirect_to '/recipes', notice: 'Recipe was successfully added.'
       flash[:notice] = 'Food created successfully.'
-      redirect_to recipes_path
+      redirect_to '/recipes'
     else
       render :new, alert: 'Failed to add recipe'
     end
@@ -39,6 +39,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cookingTime, :description, :public, :user_id)
+    params.require(:recipe).permit(:name, :preparationTime, :cookingTime, :description, :public, :user_id)
   end
 end
