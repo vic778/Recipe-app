@@ -9,19 +9,19 @@ class FoodsController < ApplicationController
   end
 
   def create
-      @user = current_user
-      food = @user.foods.new(food_params)
-      respond_to do |format|
-        format.html do
-          if food.save
-            flash[:success] = 'Food created successfully'
-            redirect_to foods_url
-          else
-            flash.now[:error] = 'Error: Food could not be created'
-            render :new
-          end
+    @user = current_user
+    food = @user.foods.new(food_params)
+    respond_to do |format|
+      format.html do
+        if food.save
+          flash[:success] = 'Food created successfully'
+          redirect_to foods_url
+        else
+          flash.now[:error] = 'Error: Food could not be created'
+          render :new
         end
       end
+    end
   end
 
   def destroy
@@ -32,10 +32,9 @@ class FoodsController < ApplicationController
     flash[:success] = 'Food was deleted!'
   end
 
-  private 
+  private
 
   def food_params
     arams.require(:food).permit(:name, :measurement_unit, :price)
   end
-
 end
