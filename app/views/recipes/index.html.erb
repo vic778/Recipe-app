@@ -1,0 +1,23 @@
+<div class="recipe">
+  <h1>My list of Recipes</h1>
+</div>
+<div class="button">
+<div>
+  <%= link_to 'Add a new recipe', new_recipe_path, class:"btn btn-primary"%>
+</div>
+</div>
+<% @recipes.each do |recipe| %>
+  <div class="card mt-3">
+    <div class="card-body recipe-body">
+      <div>
+        <h1><%= link_to recipe.name, recipe_path(recipe) %></h1>
+        <div class="mb-3  col-sm-2 btn-div">
+        <%= link_to recipe.name, recipe_path(recipe), method: :delete, class:"btn btn-primary form-control" %>
+    </div>
+      </div>
+      <div>
+        <p><%= recipe.description %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
