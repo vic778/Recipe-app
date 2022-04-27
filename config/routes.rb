@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
+ devise_for :users
 
-  devise_scope :user do
-    authenticated do
-      root to: 'foods#index'
-    end
+  root "foods#index"
 
-    unauthenticated do
-      root to: 'devise/sessions#new', as: 'unauthenticated_root'
-    end
-    get '/users/sign_out' => 'devise/sessions#destroy'
+  resources :foods, only: [:index, :show, :new, :create, :destroy]
+  resources :recipes, only: [:index, :show, :new, :create, :destroy] do
+    resources :recipe_foods, only: [:new, :create, :destroy, :update, :edit] 
+    resources :shopping_lists, only: [:index, :show]    
   end
+  resources :public_recipes, only: [:index]
 
-  resources :foods, only: %i[index new create destroy]
+  devise_scope :user do 
+    get '/users/sign_out' => 'devise/sessions#destroy' 
+  end
 end

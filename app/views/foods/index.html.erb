@@ -1,4 +1,4 @@
-<h1>Recipe App</h1>
+
 
 <div class="add-btn">
         <%= link_to 'foods/new', :remote => true do %>
@@ -15,7 +15,7 @@
         </tr>
 
         <% @foods.each do |food| %>
-        <% if can? :manage, food %>
+       
           <tr>
             <td><%=food.name%></td>
             <td><%=food.measurement_unit%></td>
@@ -31,6 +31,6 @@
           </tr>
           
           <% end %>
-        <% end %>
+       
 
         </table>
