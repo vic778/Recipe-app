@@ -22,7 +22,7 @@
             <td><%=food.price%>$</td>
            
             <td>
-            <% if current_user == food.user %>
+            <% if can? :destroy, food %>
            
                <%= button_to "Delete", food_path(food.id), html: {'data-turbo' => "true"}, method: :delete, class: "btn btn-warning" %>
                <% end %>
