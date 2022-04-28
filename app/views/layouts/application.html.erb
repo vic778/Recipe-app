@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RecipeFood</title>
+    <title>Recipe App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <% flash.each do |type, msg| %>
-        <div class="w-full">
-          <p class="text-blue-600"><%= msg %></p>
-        </div>
-   <% end %>
-      <div id="user_nav">
-        <% if user_signed_in? %>
-            Signed in as <%= current_user.name %>. 
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
-        <% else %>
-            <%= link_to "Register", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-        <% end %>
-        </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

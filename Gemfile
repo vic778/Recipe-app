@@ -45,10 +45,12 @@ gem 'bootsnap', require: false
 
 gem 'bulma-rails', '~> 0.6.1'
 gem 'carrierwave'
+gem 'bootstrap', '~> 5.1.3'
 gem 'devise', '~> 4.7'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'image_magick', '~> 0.1.9'
 gem 'mini_magick'
+gem 'jquery-ui-rails'
 gem 'simple_form', '~> 5.0'
 
 # Add controller helper methods

@@ -1,0 +1,28 @@
+  <section>  
+  <h1>Add a new Ingredient</h1>
+
+  <%= form_with model: [@recipe, @recipe.recipeFoods.create] do |f| %>
+
+  <div class>
+    <%= f.label :food%>
+    <%= f.select :food_id, current_user.foods.collect { |food| [food.name, food.id]}, {include_blank: true}, class: "form-control"%>
+  </div>
+
+    <div class=>
+      <%= f.label :quantity %></div>
+      <%= f.number_field :quantity, class: "form-control", required: true, placeholder: '1',  min: 1 %>
+    </div>
+
+    <div class></div>
+
+
+    <div class=>
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+
+    <%end%>
+
+  </section>
+
+  </body>
+</html>

@@ -1,8 +1,9 @@
- <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<h1>Add a new Food</h1>
+    <section>  
+      <p><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+      <h1>Add a new Food</h1>
 
-<%= form_with model: @food do |f| %>
+      <%= form_with model: @food do |f| %>
       
         <div class="mb-3">
           <%= f.label :name %>
@@ -23,4 +24,6 @@
           <%= f.submit class: "btn btn-primary" %>
         </div>
       
-<% end %>
+      <% end %>
+      
+    </section>
