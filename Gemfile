@@ -43,11 +43,13 @@ gem 'tzinfo-data'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'bootstrap', '~> 5.1.3'
 gem 'bulma-rails', '~> 0.6.1'
 gem 'carrierwave'
 gem 'devise', '~> 4.7'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'image_magick', '~> 0.1.9'
+gem 'jquery-ui-rails'
 gem 'mini_magick'
 gem 'simple_form', '~> 5.0'
 

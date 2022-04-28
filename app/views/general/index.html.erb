@@ -1,0 +1,44 @@
+  <body>
+    <%= render "partials/nav" %>
+
+    <section>
+
+      <div >
+      <h1>Shopping List</h1>
+      </div>
+
+      <div>
+        <h3>Amount of food items to buy: <%=@food_count%></h3>
+        <h3>Total value of food needed: $<%=@total%></h3>
+      </div>
+
+      <div>
+      <table>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+
+      <% @recipe_foods.each do |gk| %>
+        <% if @foods.include?(gk.food)%>
+          <tr>
+            <td><%=gk.food.name%></td>
+            <td><%=gk.quantity%> <%=Food.find(gk.food_id).measurement_unit%></td>
+            <td> $<%=gk.food.price * gk.quantity%></td>
+          </tr>
+        <%end%>
+      <%end%>
+
+      </table>
+    </div>
+    </section>
+
+    <script type="text/javascript">
+    document.querySelector('.navbar-toggler').addEventListener("click", () => {
+      console.log('success')
+        $("button.navbar-toggle").toggleClass("collapse");
+    })
+</script>
+  </body>
+</html>

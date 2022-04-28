@@ -1,11 +1,12 @@
-class RecipesController < ApplicationController
+class RecipesController < ActionController::Base
   def index
-    @recipes = Recipe.all
+    @user = current_user
+    @recipes = @user.recipes.all
   end
 
   def show
-    @user = current_user
-    @recipe = @user.recipes.find(params[:id])
+    @recipe = Recipe.find(params[:id])
+    @recipe_foods = @recipe.recipeFoods.all
   end
 
   def new
@@ -33,13 +34,13 @@ class RecipesController < ApplicationController
     @user = current_user
     @recipe = @user.recipes.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_url
+    redirect_to recipe_path
     flash[:success] = 'Recipe was deleted!'
   end
 
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
+    params.require(:recipe).permit(:name, :preperation_time, :cooking_time, :public, :description)
   end
 end
