@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
     flash[:success] = 'Recipe was deleted!'
   end
 
-  private 
+  private
 
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
