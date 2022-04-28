@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root 'foods#index'
 
-resources :foods, only: %i[index new create destroy]
+  resources :foods, only: %i[index new create destroy]
   resources :recipes, only: %i[index new create destroy show] do
     resources :recipe_foods, only: %i[new edit create destroy update]
   end
@@ -19,5 +19,4 @@ resources :foods, only: %i[index new create destroy]
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  
 end
