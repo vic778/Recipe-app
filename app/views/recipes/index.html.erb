@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="d-flex flex-column align-items-center width-20 mt-4">
+    <%= link_to "Create a Recipe", new_recipe_path, class: "btn btn-success create" %>
+  </div>
+  <ul class="list-group list-unstyled">
+    <% @recipes.each do |recipe| %>
+    <li class="border border-1 border-secondary container mt-5 rounded bio">
+      <div class="d-flex p-3">
+        <div>
+          <%= link_to recipe_path(recipe.id), id: "recipe_path#{recipe.id}", class: "text-decoration-none" do %>
+          <h5 class="me-5"><%= recipe.name%></h5>
+          <% end %>
+          <div>
+            <%if can? :destroy, recipe %> <%= button_to "Delete", recipe_path(recipe.id),
+            method: :delete, class: "btn btn-outline-danger"%> <% end %>
+          </div>
+        </div>
+        <div>
+          <p class="ml-5"><%= recipe.description%></p>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
