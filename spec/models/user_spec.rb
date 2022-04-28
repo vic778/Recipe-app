@@ -17,7 +17,6 @@ RSpec.describe User, type: :model do
   end
 
   it 'should return role user' do
-    #  test= User.create(name: 'Rida', email: 'example@mail.com', password: 'password')
     subject.set_role
     expect(subject.reload.role).to eq 'user'
   end

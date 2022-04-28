@@ -1,23 +1,18 @@
+<div class="recipes">
+<%= link_to "Add recipe", new_recipe_path, class: "btn btn-secondary"%>
+<% @recipes.each do |recipe|%>
 <div class="recipe">
-  <h1>My list of Recipes</h1>
-</div>
-<div class="button">
-<div>
-  <%= link_to 'Add a new recipe', new_recipe_path, class:"btn btn-primary"%>
-</div>
-</div>
-<% @recipes.each do |recipe| %>
-  <div class="card mt-3">
-    <div class="card-body recipe-body">
-      <div>
-        <h1><%= link_to recipe.name, recipe_path(recipe) %></h1>
-        <div class="mb-3  col-sm-2 btn-div">
-        <%= button_to 'Remove' recipe_path(recipe.id), method: :delete, class:"btn btn-primary form-control" %>
+  <div class="recipe-name">
+    <div>
+    <%= link_to "#{recipe.name}", recipe_path(recipe), id: "recipe_#{recipe.id}", class: "text-reset text-decoration-none fs-3 text-capitalize" %>
     </div>
-      </div>
-      <div>
-        <p><%= recipe.description %></p>
-      </div>
+    <div class="remove-recipe">
+      <%= button_to 'Remove', recipe_path(recipe), method: :delete, class: "badge bg-danger text-decoration-none" %>
     </div>
   </div>
+  <div class="description">
+    <p><%= recipe.description %></p>
+  </div>
+</div>
 <% end %>
+</div>

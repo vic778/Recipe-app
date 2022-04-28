@@ -19,13 +19,4 @@ RSpec.feature 'Signup', type: :feature do
     click_button 'Sign up'
     expect(page).to have_content "Name can't be blank"
   end
-
-  it 'click the login error' do
-    visit 'users/sign_up'
-    fill_in 'name', with: 'Hello'
-    fill_in 'email', with: 'ali@example.com'
-    fill_in 'new-pwd', with: 'password'
-    click_button 'Sign up'
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
-  end
 end
