@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   resources :foods, only: %i[index new create destroy]
+  resources :recipes, only: %i[index show new create destroy]
 end
