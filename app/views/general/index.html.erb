@@ -1,19 +1,17 @@
-  <body>
+
     <%= render "partials/nav" %>
 
-    <section>
-
-      <div >
+      <div class="heading">
       <h1>Shopping List</h1>
       </div>
 
-      <div>
+      <div class="para">
         <h3>Amount of food items to buy: <%=@food_count%></h3>
         <h3>Total value of food needed: $<%=@total%></h3>
       </div>
 
-      <div>
-      <table>
+      <div class="table">
+      <table class="table table-bordered">
       <tr>
         <th>Food</th>
         <th>Quantity</th>
@@ -32,7 +30,6 @@
 
       </table>
     </div>
-    </section>
 
     <script type="text/javascript">
     document.querySelector('.navbar-toggler').addEventListener("click", () => {
@@ -40,5 +37,3 @@
         $("button.navbar-toggle").toggleClass("collapse");
     })
 </script>
-  </body>
-</html>

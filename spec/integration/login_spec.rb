@@ -18,17 +18,17 @@ RSpec.describe 'Login Features', type: :feature do
 
   it 'Get error when I click the submit button after filling in the username and the password with incorrect data' do
     visit new_user_session_path
-    fill_in('Email', with: 'uchechi@test.com')
+    fill_in('Email', with: 'barhvictor@gmail.com')
     fill_in('Password', with: '888888')
     click_button('Log in')
     expect(page).to have_content('Invalid Email or password.')
   end
 
   it 'Should redirected to the root page when clicking submit button with correct data' do
-    @user1 = User.create! name: 'Justin', password: '000000', email: 'uchechi@test.com',
+    @user1 = User.create! name: 'Justin', password: '000000', email: 'barhvictor@gmail.com',
                           confirmed_at: Time.now
     visit new_user_session_path
-    fill_in('Email', with: 'uchechi@test.com')
+    fill_in('Email', with: 'barhvictor@gmail.com')
     fill_in('Password', with: '000000')
     click_button('Log in')
     expect(current_path).to have_content('/')

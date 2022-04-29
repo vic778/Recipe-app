@@ -1,14 +1,13 @@
- <%= render "partials/nav" %>
+    <%= render "partials/nav" %>
     
-    <section >
-      <div>
+      <div class="add-btn">
         <%= link_to 'foods/new', :remote => true do %>
           <input type="button" class="btn btn-primary" value="Add Food">
         <% end %>
       </div>
 
-      <div>
-        <table class>
+      <div class="table">
+        <table class="table table-bordered">
         <tr>
           <th>Food</th>
           <th>Measurement Unit</th>
@@ -37,4 +36,3 @@
 
         </table>
       </div>
-    </section>

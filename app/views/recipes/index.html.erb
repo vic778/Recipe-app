@@ -1,8 +1,9 @@
+
     <%= render "partials/nav" %>
     
-    <section>
+    <section class="body">
 
-    <div>
+    <div class="add-btn">
       <%= link_to 'recipes/new', :remote => true do %>
       <input type="button" class="btn btn-primary" value="Add Recipe">
       <% end %>
@@ -21,7 +22,3 @@
         </div>
         
       <% end %>
-
-    </section>
-  </body>
-</html>
