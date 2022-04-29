@@ -1,2 +1,0 @@
-namespace :cache do
-end
