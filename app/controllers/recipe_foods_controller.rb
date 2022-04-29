@@ -1,35 +1,27 @@
-class RecipeFoodsController < ActionController::Base
+class RecipeFoodsController < ApplicationController
   def new
     @recipe = Recipe.find(params[:recipe_id])
-    @foods = Food.all
-    @recipe_food = RecipeFood.new
+    @recipe_food = @recipe.recipe_foods.new
   end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    recipe_food = @recipe.recipeFoods.create(recipe_params)
-    respond_to do |format|
-      format.html do
-        if recipe_food.save
-          flash[:success] = 'Food created successfully'
-          redirect_to @recipe
-        else
-          flash.now[:error] = 'Error: Food could not be created'
-          render :new
-        end
-      end
+    @recipe_food = @recipe.recipe_foods.create(recipe_foods_params)
+    if @recipe_food.save
+      flash[:notice] = 'Food created successfully.'
+      redirect_to @recipe
+    else
+      render :new
     end
   end
 
   def edit
-    @recipe = Recipe.find(params[:recipe_id])
-    @foods = Food.all
     @recipe_food = RecipeFood.find(params[:id])
   end
 
   def update
     @recipe_food = RecipeFood.find(params[:id])
-    if @recipe_food.update(new_params)
+    if @recipe_food.update(update_params)
       flash[:success] = 'Recipe Food updated successfully.'
     else
       flash[:error] = 'Something went wrong'
@@ -38,20 +30,19 @@ class RecipeFoodsController < ActionController::Base
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
     @recipe_food = RecipeFood.find(params[:id])
     @recipe_food.destroy
-    redirect_to @recipe
-    flash[:success] = 'Food was deleted!'
+    flash[:success] = 'Recipe Food deleted successfully.'
+    redirect_to recipe_path(@recipe_food.recipe_id)
   end
 
   private
 
-  def recipe_params
+  def update_params
     params.require(:recipe_food).permit(:quantity, :food_id)
   end
 
-  def new_params
+  def recipe_foods_params
     params.require(:recipe_food).permit(:quantity, :food_id)
   end
 end

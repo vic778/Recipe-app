@@ -3,16 +3,25 @@ class Ability
 
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-    #
     user ||= User.new # guest user (not logged in)
     if user.role == 'admin'
       can :manage, :all
     else
-      can :manage, Food
-      can :manage, Recipe
-      can :read, :all
-    end
+      can :read, Recipe do |recipe|
+        recipe.user == user || recipe.public
+      end
 
+      can [:update, :destroy], Recipe do |recipe|
+        recipe.user == user
+      end
+
+      can :read, Food
+      can :destroy, Food do |food|
+        food.user.id == user.id
+      end
+      can %i[create], :all
+    end
+    #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
@@ -30,6 +39,5 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    # can :create, Food, user_id: user.id
   end
 end

@@ -1,39 +1,65 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  before(:each) do
-    user1 = User.create! name: 'Victor', password: '888888', email: 'barhvictor@gmail.com',
-                         confirmed_at: Time.now
+  let(:user) { User.create(name: 'Rida', email: 'example@mail.com', password: 'password') }
+  let(:recipe) do
+    Recipe.create(user_id: user.id, name: 'Wonderful cake', cookingTime: 5.5, preparationTime: 12.6,
+                  description: 'Test the wondrful cake', public: true)
+  end
 
-    subject do
-      user1.recipes.create(name: 'Carrot Cake', cooking_time: '30 mins', preperation_time: '30 mins',
-                           description: 'How to bake a carrot cake')
+  describe 'Validations' do
+    context 'when valid' do
+      it { expect(recipe).to be_valid }
     end
 
-    subject.save
-  end
+    it 'should allow valid name of the recipe' do
+      recipe.name = nil
+      expect(recipe).to_not be_valid
+    end
 
-  it 'name should be present' do
-    subject.name = nil
-    expect(subject).to_not be_valid
-  end
+    it 'should allow valid name' do
+      recipe.name = 'Cake mm'
+      expect(recipe).to be_valid
+    end
 
-  it 'Cooking time should be present' do
-    subject.cooking_time = nil
-    expect(subject).to_not be_valid
-  end
+    it 'should validate the cooking time' do
+      recipe.cookingTime = -5
+      expect(recipe).to_not be_valid
+    end
 
-  it 'Preparation time should be present' do
-    subject.preperation_time = nil
-    expect(subject).to_not be_valid
-  end
+    it 'should validate the cooking time' do
+      recipe.cookingTime = 65.3
+      expect(recipe).to be_valid
+    end
 
-  it 'Description should be present' do
-    subject.description = nil
-    expect(subject).to_not be_valid
-  end
+    it 'should validate the preparation time' do
+      recipe.preparationTime = -12.6
+      expect(recipe).to_not be_valid
+    end
 
-  it 'Public should be false' do
-    expect(subject.public).to_not be(true)
+    it 'should validate the preparation time' do
+      recipe.preparationTime = 0
+      expect(recipe).to be_valid
+    end
+
+    it 'should validate the description' do
+      recipe.description = 'test' * 12
+      expect(recipe).to be_valid
+    end
+
+    it 'should validate the description' do
+      recipe.description = 'test' * 260
+      expect(recipe).to_not be_valid
+    end
+
+    it 'should validate the public status' do
+      recipe.public = false
+      expect(recipe).to be_valid
+    end
+
+    it 'should validate the public status' do
+      recipe.public = nil
+      expect(recipe).to_not be_valid
+    end
   end
 end

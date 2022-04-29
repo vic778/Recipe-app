@@ -1,9 +1,6 @@
 module ApplicationHelper
-  def active_class(path)
-    if request.path == path
-      'active'
-    else
-      ''
-    end
+  def check_owner(id)
+    @inventory = Inventory.find(id)
+    @status = @inventory.user_id == current_user.id
   end
 end

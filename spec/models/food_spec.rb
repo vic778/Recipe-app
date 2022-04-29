@@ -1,25 +1,47 @@
 require 'rails_helper'
 
 RSpec.describe Food, type: :model do
-  before(:each) do
-    user1 = User.create! name: 'Victor', password: '888888', email: 'barhvictor@gmail.com',
-                         confirmed_at: Time.now
-    subject { Food.create(name: 'Rice', measurement_unit: 'grams', price: '10', user: user1) }
-    subject.save
-  end
+  let(:user) { User.create(name: 'Rida', email: 'example@mail.com', password: 'password') }
+  let(:food) { Food.create(user_id: user.id, name: 'Apple', measurementUnit: 'kg', price: 12) }
 
-  it 'name should be present' do
-    subject.name = nil
-    expect(subject).to_not be_valid
-  end
+  describe 'Validations' do
+    context 'when valid' do
+      it { expect(food).to be_valid }
+    end
 
-  it 'Measurement unit should be present' do
-    subject.measurement_unit = nil
-    expect(subject).to_not be_valid
-  end
+    it 'should allow valid name' do
+      food.name = 'Eg'
+      expect(food).to_not be_valid
+    end
 
-  it 'Price should be present' do
-    subject.price = 0
-    expect(subject).to_not be_valid
+    it 'should allow valid name' do
+      food.name = 'Apple'
+      expect(food).to be_valid
+    end
+
+    it 'should validate measurment unit' do
+      food.measurementUnit = nil
+      expect(food).to_not be_valid
+    end
+
+    it 'should validate measurment unit' do
+      food.measurementUnit = 'kg'
+      expect(food).to be_valid
+    end
+
+    it 'should validate price' do
+      food.price = -5
+      expect(food).to_not be_valid
+    end
+
+    it 'should validate price' do
+      food.price = 0
+      expect(food).to_not be_valid
+    end
+
+    it 'should validate price' do
+      food.price = 6
+      expect(food).to be_valid
+    end
   end
 end

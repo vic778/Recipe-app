@@ -1,21 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe RecipeFood, type: :model do
-  before(:each) do
-    user1 = User.create! name: 'Victor', password: '888888', email: 'barhvictor@gmail.com',
-                         confirmed_at: Time.now
-    food = Food.new(name: 'Jam', measurement_unit: 'grams', price: '20', user: user1)
-
-    recipe = user1.recipes.new(name: 'Sandwich', cooking_time: '30 mins', preperation_time: '1 min',
-                               description: 'How to')
-
-    subject { RecipeFood.new(food: 'banana', quantity: 5, recipe: 'tomato') }
-
-    subject.save
+  let(:user) { User.create(name: 'Rida', email: 'example@mail.com', password: 'password') }
+  let(:food) { Food.create(user_id: user.id, name: 'Apple', measurementUnit: 'kg', price: 12) }
+  let(:recipe) do
+    Recipe.create(name: 'Pizza', cookingTime: 1, preparationTime: 2, description: 'hgghghghghh', public: false,
+                  user_id: user.id)
   end
 
-  it 'quantity cannot be less than 1' do
-    subject.quantity = 0.5
-    expect(subject).to_not be_valid
+  let(:recipe_food) { RecipeFood.create(quantity: 10, food_id: food.id, recipe_id: recipe.id) }
+  describe 'Validations' do
+    context 'when valid' do
+      it { expect(recipe_food).to be_valid }
+    end
+
+    it 'should allow valid quantity' do
+      recipe_food.quantity = 'Eg'
+      expect(recipe_food).to_not be_valid
+    end
+
+    it 'should allow valid quantity' do
+      recipe_food.quantity = -3
+      expect(recipe_food).to_not be_valid
+    end
+
+    it 'should allow valid quantity' do
+      recipe_food.quantity = 3
+      expect(recipe_food).to be_valid
+    end
   end
 end

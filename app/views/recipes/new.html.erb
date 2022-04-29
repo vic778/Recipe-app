@@ -1,35 +1,9 @@
-
-  <h1>Add a new Recipe</h1>
-
-  <%= form_with model: @recipe do |f| %>
-  
-  <div class="mb-3">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control"%>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :cooking_time %>
-    <%= f.text_field :cooking_time, class: "form-control"%>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :preperation_time %>
-    <%= f.text_field :preperation_time, class: "form-control"%>
-  </div>
-
-  <div class="mb-3">
-    <%= f.check_box :public%>
-    <%= f.label :public %>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :description %>
-    <%= f.text_area :description, class: "form-control"%>
-  </div>
-
-    <div class="mb-3">
-     <%= f.submit class: "btn btn-primary" %>
-     </div>
-  
-    <% end %>
+<div class="recipes">
+<div class="form d-md-block">
+<h1>New Recipe</h1>
+<br>
+<%= render 'form', recipe: @recipe %>
+<br>
+<%= link_to 'Back', recipes_path, class: 'btn btn-secondary' %>
+</div>
+</div>
