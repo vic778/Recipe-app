@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
   before(:each) do
-    user1 = User.create! name: 'Mary', password: '888888', email: 'test@test.com',
+    user1 = User.create! name: 'Victor', password: '888888', email: 'barhvictor@gmail.com',
                          confirmed_at: Time.now
 
     subject do

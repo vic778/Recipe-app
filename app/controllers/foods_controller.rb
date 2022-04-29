@@ -1,6 +1,4 @@
 class FoodsController < ActionController::Base
-  before_action :authenticate_user!
-
   def index
     @foods = Food.all
   end
