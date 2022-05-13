@@ -56,7 +56,12 @@ The Recipe app keeps track of all your recipes, ingredients, and inventory. It w
 To start recipe app you need to first `signup`
 
 ## Authors
+👤 **Furkan Denizhan**
 
+- GitHub: [@nevisende](https://github.com/nevisende)
+- Twitter: [@nevisen_de](https://twitter.com/nevisen_de)
+- LinkedIn: [@furkan-denizhan](https://linkedin.com/in/furkan-denizhan)
+- 
 👤 **Victor Barh**
 
 - GitHub: [@Vvic778](https://github.com/vic778)
